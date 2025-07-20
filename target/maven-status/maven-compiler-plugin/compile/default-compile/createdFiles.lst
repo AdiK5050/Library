@@ -1,0 +1,10 @@
+io\adik5050\library\input\user\BookNameInputFromUser.class
+io\adik5050\library\operations\user\UserChoice.class
+io\adik5050\library\app\Application.class
+io\adik5050\library\operations\user\UserVerification.class
+io\adik5050\library\Library.class
+io\adik5050\library\input\file\FileInput.class
+io\adik5050\library\input\user\UserIdInputFromUser.class
+test\UserVerificationTest.class
+io\adik5050\library\input\user\ChoiceInputFromUser.class
+io\adik5050\library\input\user\Input.class
