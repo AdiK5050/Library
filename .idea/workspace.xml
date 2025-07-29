@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cc6c618c-7117-46c9-8a60-7f5a69592682" name="Changes" comment="Commiting to ask Questions!">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ProjectFiles/User Info.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/io/adik5050/library/operations/file/SearchBook.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/adik5050/library/operations/file/SearchBook.class" afterDir="false" />
-    </list>
+    <list default="true" id="cc6c618c-7117-46c9-8a60-7f5a69592682" name="Changes" comment="Commiting to ask Questions!" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
