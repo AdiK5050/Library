@@ -2,12 +2,18 @@ package io.adik5050.library.operations.file;
 
 public class SearchBook {
 
+    BookShelf bookShelfObj;
+
+    public SearchBook() {
+        this.bookShelfObj = new BookShelf();
+    }
+
     public String searchingBook(String book) {
         if(book.trim().isEmpty()) return "Empty Book Name!";
         int matchFound = 0;
         String[] bookToSearchToken = book.trim().split("\\s+");
 
-        for(String bookName : BookShelf.books) {
+        for(String bookName : bookShelfObj.getBooks()) {
             if(bookName.trim().isEmpty()) continue;
             matchFound = 0;
             String[] bookNameToken = bookName.trim().split("\\s+");

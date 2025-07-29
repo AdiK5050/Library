@@ -12,12 +12,9 @@ public class BookInputFromFiles {
     public BookInputFromFiles() {
         try {
             Path bookFilePath = Path.of(System.getProperty("user.home"), ".myLibrary", "books.txt");
-            Path bookFolderPath = Path.of(System.getProperty("user.home"), ".myLibrary");
-            if(!Files.exists(bookFilePath)) Files.createDirectories(bookFolderPath);
-            if(!Files.exists(bookFilePath)){
-                Files.createFile(bookFilePath);
-                throw new FileNotFoundException("Empty Library! First insert some books.");
-            }
+            if(!Files.exists(bookFilePath.getParent())) Files.createDirectories(bookFilePath.getParent());
+            if(!Files.exists(bookFilePath)) Files.createFile(bookFilePath);
+
             allBookNames = Files.readAllLines(bookFilePath);
         } catch (IOException e) {
             throw new RuntimeException(e);

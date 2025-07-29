@@ -1,7 +1,5 @@
 package io.adik5050.library.operations.user;
 
-import io.adik5050.library.operations.user.UserVerification;
-import io.adik5050.library.operations.user.UserChoice;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -18,6 +16,5 @@ public class InteractWithBooks {
         this.userChoice = new UserChoice(sc);
         this.userVerification = new UserVerification(sc);
     }
-
 
 }

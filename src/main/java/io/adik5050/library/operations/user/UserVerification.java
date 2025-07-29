@@ -12,6 +12,7 @@ public class UserVerification {
     String userID;
     UserIdInputFromUser userIdInput;
     UserIdInputFromFiles userIDFromFiles = new UserIdInputFromFiles();
+    private final Map<String, String> ADMIN_ID = new HashMap<>(userIDFromFiles.getAdminIDs());
     private final  Map<String, String> USER_ID = new HashMap<>(userIDFromFiles.getUserIDs());
 
     public UserVerification(Scanner sc) throws IOException {
@@ -22,29 +23,38 @@ public class UserVerification {
 
     public boolean verifyID(String userInput) {
         for(Entry<String,String> entry : USER_ID.entrySet()) {
-            if(entry.getValue().equals(userInput)); return true;
+            if(entry.getValue().trim().equals(userInput)) return true;
         }
-        return USER_ID.containsValue(userInput);
-    }
-    public void getUSER_ID() {
-        USER_ID.entrySet().stream()
-                .forEach(entry-> System.out.println(entry.getKey() + entry.getValue()));
+        return false;
     }
 
     public String giveAccessIfVerified() {
         if(!verifyID(userID)) return "User Not Found!";
         for(Entry<String, String> entry : USER_ID.entrySet())
-            if(Objects.equals(entry.getValue(), userID))
+            if(Objects.equals(entry.getValue().trim(), userID))
                 return "Welcome! " + entry.getKey();
         return "Welcome!";
     }
 
+    public boolean verifyAdminId(String userInput) {
+        for (Entry<String, String> entry : ADMIN_ID.entrySet()) {
+            if(entry.getValue().equals(userInput)) return true;
+        }
+        return false;
+    }
+
+    public String giveAdminAccessIfVerified() {
+        if(!verifyAdminId(userID)) return "You are not an admin";
+        for(Entry<String, String> entry : ADMIN_ID.entrySet()) {
+            if(Objects.equals(entry.getValue(), userID))
+                return "Welcome! " + entry.getKey();
+        }
+        return "Welcome!";
+    }
+
     public static void main(String[] args) throws IOException{
-        Scanner sc = new Scanner( "USER20ZXCVBNRE2583");
-        UserVerification testObject = new UserVerification(sc);
-        System.out.println(testObject.verifyID(String.valueOf(sc)));
-        System.out.println(testObject.giveAccessIfVerified());
-        System.out.println(testObject.userID);
-        testObject.getUSER_ID();
+        Scanner sc = new Scanner("USER1KJHGFDS9876");
+        UserVerification testObj = new UserVerification(sc);
+        System.out.println(testObj.giveAccessIfVerified());
     }
 }

@@ -11,6 +11,6 @@ public class UserIdInputFromUser implements Input {
     @Override
     public String input() {
         System.out.println("Enter your User ID for verification:- ");
-        return sc.next();
+        return sc.nextLine();
     }
 }

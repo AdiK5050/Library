@@ -7,23 +7,19 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.Scanner;
 
-
-public class UserVerificationTestPass {
+class UserVerificationTestFail {
 
 
     @Test
-    public void verificationTestPass() {
+    public void verificationTestFail() throws IOException {
+        Scanner sc = new Scanner("failCondition");
+        UserVerification testObject = new UserVerification(sc);
 
         try {
-            Scanner sc = new Scanner("USER1KJHGFDS9876");
-            UserVerification testObject = new UserVerification(sc);
-            Assertions.assertEquals("Welcome! user_1" , testObject.giveAccessIfVerified().trim());
+            Assertions.assertEquals("User Not Found!", testObject.giveAccessIfVerified());
             System.out.println(testObject.giveAccessIfVerified());
         } catch(Exception e) {
             System.out.println("Exception: " + e);
         }
     }
 }
-
-
-
