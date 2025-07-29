@@ -10,11 +10,14 @@ import io.adik5050.library.util.TimeFormats;
 public class ReturnBook extends BookShelf{
 
     TimeFormats timeFormats = new TimeFormats();
-    Path returnedBooksFile = Path.of("src/main/resources/ProjectFiles/Returned Books");
-    Path issuedBooksFile = Path.of("src/main/resources/ProjectFiles/Issued Books");
+    Path returnedBooksFile = Path.of(System.getProperty("user.home"), ".myLibrary", "returnedBooks.txt");
+    Path issuedBooksFile = Path.of(System.getProperty("user.home"), ".myLibrary", "issueBooks.txt");
+    Path returnedBooksFolder = Path.of(System.getProperty("user.home"), ".myLibrary");
 
     public String returningBook(String book) throws IOException{
+        if(!Files.exists(issuedBooksFile)) Files.createDirectories(returnedBooksFolder);
         if(!Files.exists(returnedBooksFile)) Files.createFile(returnedBooksFile);
+        if(!Files.exists(issuedBooksFile)) return "Issued Book history not found!";
 
         if(Files.readAllLines(issuedBooksFile).toString().contains(book) && !BookShelf.books.toString().contains(book)) {
             if(!Files.readAllLines(returnedBooksFile).toString().contains(timeFormats.getDate()))

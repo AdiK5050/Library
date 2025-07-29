@@ -10,17 +10,19 @@ import io.adik5050.library.util.TimeFormats;
 public class IssueBook {
 
     TimeFormats timeFormats = new TimeFormats();
-    Path issuedBooksFile = Path.of("src/main/resources/ProjectFiles/Issued Books");
+    Path issuedBooksFile = Path.of(System.getProperty("user.home"), ".myLibrary", "issueBooks.txt");
+    Path issuedBooksFolder = Path.of(System.getProperty("user.home"), ".myLibrary");
 
     public String issuingBook (String book) throws IOException {
+        if(!Files.exists(issuedBooksFile)) Files.createDirectories(issuedBooksFolder);
         if(!Files.exists(issuedBooksFile)) Files.createFile(issuedBooksFile);
 
         if(BookShelf.books.toString().contains(book)) {
             if(!Files.readAllLines(issuedBooksFile).toString().contains(timeFormats.getDate()))
                     Files.writeString(issuedBooksFile, timeFormats.getDate() + "\n", StandardOpenOption.APPEND);
 
-            Files.writeString(issuedBooksFile, book + "\t",StandardOpenOption.APPEND);
-            Files.writeString(issuedBooksFile, timeFormats.getTime() + "\n",StandardOpenOption.APPEND);
+            StringBuilder issueInfo = new StringBuilder(book + "\t" + timeFormats.getTime());
+            Files.writeString(issuedBooksFile, issueInfo + "\n",StandardOpenOption.APPEND);
             BookShelf.books.remove(book);
             System.out.println(UpdateLibrary.updatingLibrary());
 

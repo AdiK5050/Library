@@ -4,16 +4,17 @@ import io.adik5050.library.operations.user.UserVerification;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 
 public class UserVerificationTestPass {
 
-    Scanner sc = new Scanner("USER1ALSDKFJEO3432");
-    UserVerification testObject = new UserVerification(sc);
-    @Test
-    public void verificationTestPass() {
 
+    @Test
+    public void verificationTestPass() throws IOException {
+        Scanner sc = new Scanner("USER1KJHGFDS9876");
+        UserVerification testObject = new UserVerification(sc);
         try {
             Assertions.assertEquals("Welcome!", testObject.giveAccessIfVerified());
             System.out.println(testObject.giveAccessIfVerified());
@@ -25,10 +26,11 @@ public class UserVerificationTestPass {
 
 class UserVerificationTestFail {
 
-    Scanner sc = new Scanner("failCondition");
-    UserVerification testObject = new UserVerification(sc);
+
     @Test
-    public void verificationTestFail() {
+    public void verificationTestFail() throws IOException {
+        Scanner sc = new Scanner("failCondition");
+        UserVerification testObject = new UserVerification(sc);
 
         try {
             Assertions.assertEquals("User Not Found!", testObject.giveAccessIfVerified());

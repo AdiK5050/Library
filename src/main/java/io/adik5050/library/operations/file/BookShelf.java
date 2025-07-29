@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookShelf {
+
     private static final BookInputFromFiles bookInputFromFiles = new BookInputFromFiles();
     public static List<String> books = new ArrayList<>(bookInputFromFiles.getAllBooks());
 }

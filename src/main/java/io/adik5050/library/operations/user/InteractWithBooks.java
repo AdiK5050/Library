@@ -2,6 +2,8 @@ package io.adik5050.library.operations.user;
 
 import io.adik5050.library.operations.user.UserVerification;
 import io.adik5050.library.operations.user.UserChoice;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public class InteractWithBooks {
@@ -11,7 +13,7 @@ public class InteractWithBooks {
     UserVerification userVerification;
 
 
-    public InteractWithBooks(Scanner sc) {
+    public InteractWithBooks(Scanner sc) throws IOException {
         this.sc = sc;
         this.userChoice = new UserChoice(sc);
         this.userVerification = new UserVerification(sc);
