@@ -7,12 +7,12 @@ public class UserChoice {
 
     Scanner sc;
     int userChoice;
+    int adminChoice;
     ChoiceInputFromUser userChoiceInput;
 
     public UserChoice(Scanner sc) {
         this.sc = sc;
         this.userChoiceInput = new ChoiceInputFromUser(sc);
-        this.userChoice = Integer.parseInt( userChoiceInput.input());
     }
 
     private boolean verifyChoice(int choice) {
@@ -20,7 +20,14 @@ public class UserChoice {
     }
 
     public int getUserChoice() {
+        this.userChoice = Integer.parseInt( userChoiceInput.input());
         if(!verifyChoice(userChoice)) return -1;
         return userChoice;
+    }
+
+    public int getAdminChoice() {
+        this.adminChoice = Integer.parseInt(userChoiceInput.inputAdminChoice());
+        if(!verifyChoice(adminChoice)) return -1;
+        return adminChoice;
     }
 }

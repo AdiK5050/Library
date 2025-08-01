@@ -16,8 +16,8 @@ class UserVerificationTestFail {
         UserVerification testObject = new UserVerification(sc);
 
         try {
-            Assertions.assertEquals("User Not Found!", testObject.giveAccessIfVerified());
-            System.out.println(testObject.giveAccessIfVerified());
+            Assertions.assertEquals("User Not Found!", testObject.getUserName());
+            System.out.println(testObject.getUserName());
         } catch(Exception e) {
             System.out.println("Exception: " + e);
         }

@@ -11,6 +11,11 @@ public class UserIdInputFromUser implements Input {
     @Override
     public String input() {
         System.out.println("Enter your User ID for verification:- ");
-        return sc.nextLine();
+        return sc.next();
+    }
+
+    public String adminIdInput() {
+        System.out.println("Enter your Admin ID for verification:- ");
+        return sc.next();
     }
 }

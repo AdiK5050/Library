@@ -1,7 +1,5 @@
 package io.adik5050.library.input.file;
 
-import io.adik5050.library.input.user.UserIdInputFromUser;
-import io.adik5050.library.operations.user.UserVerification;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

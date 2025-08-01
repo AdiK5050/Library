@@ -1,5 +1,7 @@
 package io.adik5050.library.operations.file;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Files;
@@ -9,9 +11,13 @@ public class UpdateLibrary {
 
     BookShelf bookShelfObj;
     private final Path bookFilePath;
+    Path issuedBookFile;
+    Path returnedBookFile;
 
     public UpdateLibrary() {
         this.bookShelfObj = new BookShelf();
+        this.issuedBookFile = Path.of(System.getProperty("user.home"), ".myLibrary", "issuedBooks.txt");
+        this.returnedBookFile = Path.of(System.getProperty("user.home"), ".myLibrary", "returnedBooks.txt");
         this.bookFilePath = Path.of(System.getProperty("user.home"), ".myLibrary", "books.txt");
     }
 
@@ -21,4 +27,6 @@ public class UpdateLibrary {
         Files.write(bookFilePath, updatedBooks);
         return "Changes Saved!";
     }
+
+
 }

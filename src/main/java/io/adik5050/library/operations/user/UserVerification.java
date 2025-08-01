@@ -9,16 +9,35 @@ import java.util.Map.Entry;
 
 public class UserVerification {
     Scanner sc;
-    String userID;
+    private String userID;
+    private String adminID;
     UserIdInputFromUser userIdInput;
-    UserIdInputFromFiles userIDFromFiles = new UserIdInputFromFiles();
-    private final Map<String, String> ADMIN_ID = new HashMap<>(userIDFromFiles.getAdminIDs());
-    private final  Map<String, String> USER_ID = new HashMap<>(userIDFromFiles.getUserIDs());
+    UserIdInputFromFiles userIDFromFiles;
+    private final Map<String, String> ADMIN_ID;
+    private final  Map<String, String> USER_ID;
 
     public UserVerification(Scanner sc) throws IOException {
         this.sc = sc;
+        this.userIDFromFiles = new UserIdInputFromFiles();
         this.userIdInput = new UserIdInputFromUser(this.sc);
-        this.userID = userIdInput.input();
+        this.ADMIN_ID = new HashMap<>(userIDFromFiles.getAdminIDs());
+        this.USER_ID = new HashMap<>(userIDFromFiles.getUserIDs());
+    }
+
+    public String getAdminID() {
+        return adminID;
+    }
+
+    public void setAdminID(String adminID) {
+        this.adminID = adminID;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public boolean verifyID(String userInput) {
@@ -28,7 +47,7 @@ public class UserVerification {
         return false;
     }
 
-    public String giveAccessIfVerified() {
+    public String getUserName() {
         if(!verifyID(userID)) return "User Not Found!";
         for(Entry<String, String> entry : USER_ID.entrySet())
             if(Objects.equals(entry.getValue().trim(), userID))
@@ -38,23 +57,18 @@ public class UserVerification {
 
     public boolean verifyAdminId(String userInput) {
         for (Entry<String, String> entry : ADMIN_ID.entrySet()) {
-            if(entry.getValue().equals(userInput)) return true;
+            if(entry.getValue().trim().equals(userInput)) return true;
         }
         return false;
     }
 
-    public String giveAdminAccessIfVerified() {
-        if(!verifyAdminId(userID)) return "You are not an admin";
+    public String getAdminName() {
+        if(!verifyAdminId(adminID)) return "You are not an admin";
         for(Entry<String, String> entry : ADMIN_ID.entrySet()) {
-            if(Objects.equals(entry.getValue(), userID))
+            if(Objects.equals(entry.getValue().trim(), adminID))
                 return "Welcome! " + entry.getKey();
         }
         return "Welcome!";
     }
 
-    public static void main(String[] args) throws IOException{
-        Scanner sc = new Scanner("USER1KJHGFDS9876");
-        UserVerification testObj = new UserVerification(sc);
-        System.out.println(testObj.giveAccessIfVerified());
-    }
 }

@@ -14,18 +14,21 @@ public class ReturnBook extends BookShelf{
     TimeFormats timeFormats;
     Path returnedBooksFile;
     Path issuedBooksFile;
+    Path historyFile;
 
     public ReturnBook() throws IOException{
         this.bookShelfObj = new BookShelf();
         this.updateLibraryObj = new UpdateLibrary();
         this.timeFormats = new TimeFormats();
         this.returnedBooksFile = Path.of(System.getProperty("user.home"), ".myLibrary", "returnedBooks.txt");
-        this.issuedBooksFile = Path.of(System.getProperty("user.home"), ".myLibrary", "issueBooks.txt");
+        this.issuedBooksFile = Path.of(System.getProperty("user.home"), ".myLibrary", "issuedBooks.txt");
+        this.historyFile = Path.of(System.getProperty("user.home"), ".myLibrary", "history.txt");
         if(!Files.exists(returnedBooksFile.getParent())) Files.createDirectories(returnedBooksFile.getParent());
         if(!Files.exists(returnedBooksFile)) Files.createFile(returnedBooksFile);
     }
 
-    public String returningBook(String book) throws IOException{
+
+    public String returningBook(String book, String userName) throws IOException{
 
         if(!Files.exists(issuedBooksFile)) return "Issued Book history not found!";
         if(Files.readAllLines(issuedBooksFile).toString().contains(book) && !bookShelfObj.contains(book)) {
@@ -34,6 +37,7 @@ public class ReturnBook extends BookShelf{
 
             Files.writeString(returnedBooksFile, book + "\t",StandardOpenOption.APPEND);
             Files.writeString(returnedBooksFile, timeFormats.getTime() + "\n",StandardOpenOption.APPEND);
+            Files.writeString(historyFile, userName + "issued " + book + " " + timeFormats.getTime() + " " + timeFormats.getDate());
             bookShelfObj.addBook(book);
             System.out.println(updateLibraryObj.updatingLibrary(bookShelfObj.getBooks()));
 

@@ -12,7 +12,7 @@ public class BookReturnTest {
     public void if_BookReturned_Then_TestPass() throws Exception{
         ReturnBook returnTestObject = new ReturnBook();
 
-            Assertions.assertEquals("Returned Book:- The Da Vinci Code by Dan Brown", returnTestObject.returningBook("The Da Vinci Code by Dan Brown"));
+            Assertions.assertEquals("Returned Book:- The Da Vinci Code by Dan Brown", returnTestObject.returningBook("The Da Vinci Code by Dan Brown" , "A user"));
 
     }
 }

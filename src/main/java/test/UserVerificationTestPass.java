@@ -17,8 +17,8 @@ public class UserVerificationTestPass {
         try {
             Scanner sc = new Scanner("USER1KJHGFDS9876");
             UserVerification testObject = new UserVerification(sc);
-            Assertions.assertEquals("Welcome! user_1" , testObject.giveAccessIfVerified().trim());
-            System.out.println(testObject.giveAccessIfVerified());
+            Assertions.assertEquals("Welcome! user_1" , testObject.getUserName().trim());
+            System.out.println(testObject.getUserName());
         } catch(Exception e) {
             System.out.println("Exception: " + e);
         }

@@ -16,7 +16,7 @@ public class BookIssueTest {
         try {
         IssueBook issueTestObject = new IssueBook();
 
-            Assertions.assertEquals("Issued Book:- The Da Vinci Code by Dan Brown", issueTestObject.issuingBook("The Da Vinci Code by Dan Brown"));
+            Assertions.assertEquals("Issued Book:- The Da Vinci Code by Dan Brown", issueTestObject.issuingBook("The Da Vinci Code by Dan Brown", "A user"));
         } catch (IOException e) {
             System.out.println(e);
         }
