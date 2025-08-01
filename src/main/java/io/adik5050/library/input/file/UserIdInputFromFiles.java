@@ -22,7 +22,7 @@ public class UserIdInputFromFiles {
             Path adminInfoFolder = Path.of(System.getProperty("user.home"), ".myLibrary");
             if(!Files.exists(adminInfoFolder)) Files.createDirectories(adminInfoFolder);
             Files.createFile(adminInfoFile);
-            throw new FileNotFoundException("No Admin Data Avaliable!");
+            throw new FileNotFoundException("No Admin Data Available!");
         }
     }
     public HashMap<String , String> getUserIDs() throws IOException {

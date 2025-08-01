@@ -29,37 +29,48 @@ public class EditBookShelf {
         this.bookNameInputFromUserObj = new BookNameInputFromUser(this.sc);
     }
 
-    public void editingShelf() throws IOException{
+    public void editingShelf() {
         userVerificationObj.setAdminID(userIdInputFromUserObj.adminIdInput());
-        if(!userVerificationObj.verifyAdminId(userVerificationObj.getAdminID())) {
+        if (!userVerificationObj.verifyAdminId(userVerificationObj.getAdminID())) {
             System.out.println(userVerificationObj.getAdminName());
             return;
         }
-        userVerificationObj.getAdminName();
-        int ch = userChoiceObj.getAdminChoice();
+        System.out.println(userVerificationObj.getAdminName());
+        int ch = 0, choiceErrorCount = 0;
 
-        switch (ch) {
-            case 1:
-                System.out.println(bookShelfObj.getBooks());
-                break;
+        do {
+            try {
+                ch = userChoiceObj.getAdminChoice();
+                switch (ch) {
+                    case 1:
+                        System.out.println(bookShelfObj.getBooks());
+                        break;
 
-            case 2:
-                bookShelfObj.addBook(bookNameInputFromUserObj.input());
-                break;
+                    case 2:
+                        bookShelfObj.addBook(bookNameInputFromUserObj.input());
+                        break;
 
-            case 3:
-                bookShelfObj.remove(bookNameInputFromUserObj.input());
-                break;
+                    case 3:
+                        bookShelfObj.remove(bookNameInputFromUserObj.input());
+                        break;
 
-            case 4:
-                updateLibraryObj.updatingLibrary(bookShelfObj.getBooks());
-                break;
+                    case 4:
+                        updateLibraryObj.updatingLibrary(bookShelfObj.getBooks());
+                        break;
 
-            case 0:
-                break;
+                    case 0:
+                        break;
 
-            default:
-                System.out.println("Invalid Choice");
-        }
+                    default:
+                        System.out.println("Invalid Choice");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Enter a valid choice! From 0 to 4");
+                choiceErrorCount++;
+                if(sc.hasNextLine()) sc.nextLine();
+            } catch (Exception e) {
+                throw new RuntimeException();
+            }
+        } while (ch != 0 || choiceErrorCount < 3);
     }
 }

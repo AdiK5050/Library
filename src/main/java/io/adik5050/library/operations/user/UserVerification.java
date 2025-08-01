@@ -55,9 +55,9 @@ public class UserVerification {
         return "Welcome!";
     }
 
-    public boolean verifyAdminId(String userInput) {
+    public boolean verifyAdminId(String adminInput) {
         for (Entry<String, String> entry : ADMIN_ID.entrySet()) {
-            if(entry.getValue().trim().equals(userInput)) return true;
+            if(entry.getValue().trim().equals(adminInput)) return true;
         }
         return false;
     }

@@ -37,7 +37,7 @@ public class ReturnBook extends BookShelf{
 
             Files.writeString(returnedBooksFile, book + "\t",StandardOpenOption.APPEND);
             Files.writeString(returnedBooksFile, timeFormats.getTime() + "\n",StandardOpenOption.APPEND);
-            Files.writeString(historyFile, userName + "issued " + book + " " + timeFormats.getTime() + " " + timeFormats.getDate());
+            Files.writeString(historyFile, userName + " issued " + book + " " + timeFormats.getTime() + " " + timeFormats.getDate());
             bookShelfObj.addBook(book);
             System.out.println(updateLibraryObj.updatingLibrary(bookShelfObj.getBooks()));
 

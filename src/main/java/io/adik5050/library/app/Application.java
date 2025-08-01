@@ -23,7 +23,6 @@ public class Application {
 
     public void loginApp() throws IOException{
         int ch = Integer.parseInt(choiceInputFromUserObj.inputLoginChoice());
-
         switch (ch) {
 
             case 1:

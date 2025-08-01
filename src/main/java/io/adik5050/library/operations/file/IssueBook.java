@@ -35,7 +35,7 @@ public class IssueBook {
 
             StringBuilder issueInfo = new StringBuilder(book + "\t" + timeFormats.getTime());
             Files.writeString(issuedBooksFile, issueInfo.append("\n"),StandardOpenOption.APPEND);
-            Files.writeString(historyFile, userName + "issued " + book + " " + timeFormats.getTime() + " " + timeFormats.getDate());
+            Files.writeString(historyFile, userName + " issued " + book + " " + timeFormats.getTime() + " " + timeFormats.getDate());
             bookShelfObj.remove(book);
             System.out.println(updateLibraryObj.updatingLibrary(bookShelfObj.getBooks()));
 

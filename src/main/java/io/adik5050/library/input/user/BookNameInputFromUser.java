@@ -10,6 +10,7 @@ public class BookNameInputFromUser implements Input{
     @Override
     public String input() {
         System.out.println("Enter name of the Book:- ");
-        return sc.next();
+        if(sc.hasNextLine()) sc.nextLine();
+        return sc.nextLine();
     }
 }

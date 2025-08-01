@@ -42,35 +42,46 @@ public class InteractWithShelf {
     }
 
     public void interacting() throws IOException{
+        userVerificationObj.setUserID(userIdInputFromUserObj.input());
         if(!userVerificationObj.verifyID(userVerificationObj.getUserID())) {
             System.out.println(userVerificationObj.getUserName());
             return;
         };
         System.out.println(userVerificationObj.getUserName());
-        int ch = userChoiceObj.getUserChoice();
+        int ch = 0, choiceErrorCount = 0;
+        do {
+            try {
+                ch = userChoiceObj.getUserChoice();
+                switch (ch) {
+                    case 1:
+                        System.out.println(searchBookObj.searchingBook(bookNameInputFromUserObj.input()));
+                        break;
 
-        switch (ch) {
-            case 1:
-                System.out.println(searchBookObj.searchingBook(bookNameInputFromUserObj.input()));
-                break;
+                    case 2:
+                        System.out.println(issueBookObj.issuingBook(bookNameInputFromUserObj.input(), userVerificationObj.getUserName()));
+                        break;
 
-            case 2:
-                System.out.println(issueBookObj.issuingBook(bookNameInputFromUserObj.input(), userVerificationObj.getUserName()));
-                break;
+                    case 3:
+                        System.out.println(returnBookObj.returningBook(bookNameInputFromUserObj.input(), userVerificationObj.getUserName()));
+                        break;
 
-            case 3:
-                System.out.println(returnBookObj.returningBook(bookNameInputFromUserObj.input(), userVerificationObj.getUserName()));
-                break;
+                    case 4:
+                        historyObj.getHistory();
+                        break;
 
-            case 4:
-                historyObj.getHistory();
-                break;
+                    case 0:
+                        return;
 
-            case 0:
-                return;
-
-            default:
-                System.out.println("Invalid Choice");
-        }
+                    default:
+                        System.out.println("Invalid Choice");
+                }
+            }catch (NumberFormatException e) {
+                System.out.println("Enter a valid choice! From 0 to 4");
+                choiceErrorCount++;
+                if(sc.hasNextLine()) sc.nextLine();
+            } catch (Exception e) {
+                throw new RuntimeException();
+            }
+        }while(ch!= 0 || choiceErrorCount < 3);
     }
 }
