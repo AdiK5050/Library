@@ -16,6 +16,9 @@ public class History {
 
         public void getHistory() throws IOException {
             history.addAll(Files.readAllLines(historyFile));
-            System.out.println(history);
+            for(String logs: history) {
+                System.out.println(logs);
+            }
+
     }
 }

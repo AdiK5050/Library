@@ -43,7 +43,7 @@ public class EditBookShelf {
                 ch = userChoiceObj.getAdminChoice();
                 switch (ch) {
                     case 1:
-                        System.out.println(bookShelfObj.getBooks());
+                        bookShelfObj.printBooks();
                         break;
 
                     case 2:

@@ -19,6 +19,7 @@ public class ChoiceInputFromUser implements Input {
 
     private final String ACCESS_CHOICE = "Press 1 to Login as a User" +
             "\nPress 2 to Login as an Admin" +
+            "\nPress 3 to Sign In" +
             "\nPress 0 to Exit";
 
     public ChoiceInputFromUser(Scanner sc) {this.sc = sc;}

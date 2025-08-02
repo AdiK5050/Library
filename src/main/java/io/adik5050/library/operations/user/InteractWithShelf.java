@@ -4,6 +4,7 @@ package io.adik5050.library.operations.user;
 import java.io.IOException;
 import java.util.Scanner;
 
+import io.adik5050.library.util.UserNotFoundException;
 import io.adik5050.library.input.user.BookNameInputFromUser;
 import io.adik5050.library.input.user.UserIdInputFromUser;
 import io.adik5050.library.operations.file.History;
@@ -41,28 +42,29 @@ public class InteractWithShelf {
         this.bookNameInputFromUserObj = new BookNameInputFromUser(this.sc);
     }
 
-    public void interacting() throws IOException{
+    public void interacting()throws UserNotFoundException{
         userVerificationObj.setUserID(userIdInputFromUserObj.input());
         if(!userVerificationObj.verifyID(userVerificationObj.getUserID())) {
             System.out.println(userVerificationObj.getUserName());
-            return;
-        };
+            throw new UserNotFoundException();
+        }
         System.out.println(userVerificationObj.getUserName());
         int ch = 0, choiceErrorCount = 0;
         do {
             try {
                 ch = userChoiceObj.getUserChoice();
+                String userName = userVerificationObj.getUserName().replace("Welcome!", "");
                 switch (ch) {
                     case 1:
                         System.out.println(searchBookObj.searchingBook(bookNameInputFromUserObj.input()));
                         break;
 
                     case 2:
-                        System.out.println(issueBookObj.issuingBook(bookNameInputFromUserObj.input(), userVerificationObj.getUserName()));
+                        System.out.println(issueBookObj.issuingBook(bookNameInputFromUserObj.input(), userName));
                         break;
 
                     case 3:
-                        System.out.println(returnBookObj.returningBook(bookNameInputFromUserObj.input(), userVerificationObj.getUserName()));
+                        System.out.println(returnBookObj.returningBook(bookNameInputFromUserObj.input(), userName));
                         break;
 
                     case 4:

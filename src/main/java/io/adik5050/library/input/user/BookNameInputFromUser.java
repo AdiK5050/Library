@@ -11,6 +11,6 @@ public class BookNameInputFromUser implements Input{
     public String input() {
         System.out.println("Enter name of the Book:- ");
         if(sc.hasNextLine()) sc.nextLine();
-        return sc.nextLine();
+        return sc.nextLine().trim();
     }
 }
